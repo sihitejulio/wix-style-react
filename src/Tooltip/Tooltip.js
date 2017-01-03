@@ -229,7 +229,7 @@ class Tooltip extends Component {
       if (['top', 'bottom'].includes(placement)) {
         return isPositive ? {left: `${pixels}px`} : {left: 'auto', right: `${pixels}px`};
       }
-      return isPositive ? {top: `${pixels}px`} : {top: 'auto', bottom: `${pixels}px` };
+      return isPositive ? {top: `${pixels}px`} : {top: 'auto', bottom: `${pixels}px`};
     }
     return {};
   }
