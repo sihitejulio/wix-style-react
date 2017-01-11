@@ -2,19 +2,24 @@ import React, {Children} from 'react';
 import {children, optional, once} from '../Composite/CompositeValidation';
 import Label from '../Label';
 import Input from '../Input';
+import styles from './TextField.scss';
+import {first, last} from 'lodash/fp';
 
-export default function TextField({children}) {
-  const [label, input] = Children.toArray(children);
-  return (
-    <div>
-      {label}
-      {input}
-    </div>
-  );
+export default function TextField(props) {
+    const children = Children.toArray(props.children);
+    const {hook} = props;
+
+    return (
+        <div className={styles.textField} {...hook}>
+            {children.length === 2 ? <div className={styles.labelWrapper}>{first(children)}</div> : null}
+            {last(children)}
+        </div>
+    );
 }
 
 TextField.displayName = 'TextField';
 
 TextField.propTypes = {
-  children: children(optional(Label), once(Input))
+    hook: React.PropTypes.string,
+    children: children(optional(Label), once(Input))
 };
